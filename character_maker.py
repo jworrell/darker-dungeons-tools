@@ -45,7 +45,7 @@ class CharacterChoice:
 class Character:
     race: CharacterChoice
     background: CharacterChoice
-    _class: CharacterChoice
+    character_class: CharacterChoice
     reroll: int
     rolled_stats: CharacterStats
     suggested_stats: Optional[CharacterStats]
@@ -55,12 +55,12 @@ class Character:
 
         worst_stat = min((v, k) for k, v in rolled_stats.items())
 
-        print(rolled_stats, worst_stat, self.reroll)
-
         if worst_stat[0] < self.reroll:
             rolled_stats[worst_stat[1]] = self.reroll
 
-        best_stat = max((v, k) for k, v in rolled_stats.items())
+        _ = max((v, k) for k, v in rolled_stats.items())
+
+        self.suggested_stats = CharacterStats(**rolled_stats)
 
 
 class RandomTable:
@@ -165,7 +165,7 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
     character = Character(
         race=RACE_TABLE.choose(),
         background=BACKGROUND_TABLE.choose(),
-        _class=CLASS_TABLE.choose(),
+        character_class=CLASS_TABLE.choose(),
         reroll=CharacterStats.roll_stat(),
         rolled_stats=rolled_stats,
         suggested_stats=None,
