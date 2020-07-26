@@ -1,0 +1,81 @@
+- roll: [1, 1]
+  value: Aasimar
+  subtable:
+    - {roll: [1, 33], value: Fallen}
+    - {roll: [34, 67], value: Protector}
+    - {roll: [68, 100], value: Scourge}
+
+- {roll: [2, 4], value: Dragonborn}
+
+- roll: [5, 19]
+  value: Dwarf
+  subtable:
+    - {roll: [1, 45], value: Hill}
+    - {roll: [46, 90], value: Mountain}
+    - {roll: [91, 100], value: Duergar}
+
+- roll: [20, 29]
+  value: Elf
+  subtable:
+    - {roll: [1, 10], value: Drow}
+    - {roll: [11, 20], value: Eladrin}
+    - {roll: [21, 50], value: High}
+    - {roll: [51, 60], value: Sea}
+    - {roll: [61, 70], value: Shadar-kai}
+    - {roll: [71, 100], value: Wood}
+
+- {roll: [30, 31], value: Firbolg}
+- roll: [32, 33]
+  value: Gith
+  subtable:
+    - {roll: [1, 50], value: Githyanki}
+    - {roll: [51, 100], value: Githzerai}
+
+- roll: [34, 39]
+  value: Gnome
+  subtable:
+    - {roll: [1, 45], value: Forest}
+    - {roll: [46, 90], value: Rock}
+    - {roll: [91, 100], value: Deep}
+
+- {roll: [40, 41], value: Goliath}
+- {roll: [42, 42], value: Half-Elf}
+- {roll: [43, 43], value: Half-Orc}
+
+- roll: [44, 50]
+  value: Halfling
+  subtable:
+    - {roll: [1, 50], value: Lightfoot}
+    - {roll: [51, 100], value: Stout}
+
+- {roll: [51, 90], value: Human}
+- {roll: [91, 91], value: Kenku}
+- {roll: [92, 92], value: Lizardfold}
+
+- roll: [93, 93]
+  value: Monstrous
+  subtable:
+    - {roll: [1, 10], value: Bugbear}
+    - {roll: [11, 35], value: Goblin}
+    - {roll: [36, 50], value: Hobgoblin}
+    - {roll: [51, 75], value: Kobold}
+    - {roll: [76, 90], value: Orc}
+    - {roll: [91, 100], value: Yuan-ti}
+
+- {roll: [94, 94], value: Tabaxi}
+
+- roll: [95, 98]
+  value: Tiefling
+  subtable:
+    - {roll: [01, 12], value: Asmodeus}
+    - {roll: [13, 23], value: Baalzebul}
+    - {roll: [24, 34], value: Dispater}
+    - {roll: [35, 45], value: Fierna}
+    - {roll: [46, 56], value: Glasya}
+    - {roll: [57, 67], value: Levistus}
+    - {roll: [68, 78], value: Mammon}
+    - {roll: [79, 89], value: Mephistopheles}
+    - {roll: [90, 100], value: Zariel}
+
+- {roll: [99, 99], value: Triton}
+- {roll: [100, 100], value: Choose}

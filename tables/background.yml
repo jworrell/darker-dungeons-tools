@@ -1,0 +1,14 @@
+- {roll: [01, 07], value: Acolyte}
+- {roll: [08, 14], value: Charlatan}
+- {roll: [15, 21], value: Criminal}
+- {roll: [22, 28], value: Entertainer}
+- {roll: [29, 35], value: Folk Hero}
+- {roll: [36, 42], value: Guild Artisan}
+- {roll: [43, 49], value: Hermit}
+- {roll: [50, 56], value: Noble}
+- {roll: [57, 63], value: Outlander}
+- {roll: [64, 70], value: Sage}
+- {roll: [71, 77], value: Sailor}
+- {roll: [78, 84], value: Soldier}
+- {roll: [85, 91], value: Urchin}
+- {roll: [92, 100], value: Choose}

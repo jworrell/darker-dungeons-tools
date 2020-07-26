@@ -1,0 +1,57 @@
+- {roll: [01, 08], value: Barbarian}
+- {roll: [09, 16], value: Bard}
+
+- roll: [17, 24]
+  value: Cleric
+  subtable:
+    - {roll: [01, 10], value: Forge}
+    - {roll: [11, 20], value: Grave}
+    - {roll: [21, 30], value: Knowledge}
+    - {roll: [31, 40], value: Life}
+    - {roll: [41, 50], value: Light}
+    - {roll: [51, 60], value: Nature}
+    - {roll: [61, 70], value: Tempest}
+    - {roll: [71, 80], value: Trickery}
+    - {roll: [81, 90], value: War}
+    - {roll: [91, 100], value: Choose}
+
+- {roll: [25, 32], value: Druid}
+
+- roll: [33, 40]
+  value: Fighter
+  subtable:
+    - {roll: [01, 16], value: Archery}
+    - {roll: [17, 32], value: Defense}
+    - {roll: [33, 48], value: Dueling}
+    - {roll: [49, 64], value: Great Weapon}
+    - {roll: [65, 80], value: Protection}
+    - {roll: [81, 96], value: Two-Weapon}
+    - {roll: [97, 100], value: Choose}
+
+- {roll: [41, 48], value: Monk}
+- {roll: [49, 56], value: Paladin}
+- {roll: [57, 64], value: Paladin}
+- {roll: [65, 72], value: Rogue}
+
+- roll: [73, 80]
+  value: Sorcerer
+  subtable:
+    - {roll: [01, 19], value: Divine Soul}
+    - {roll: [20, 38], value: Draconic Blood}
+    - {roll: [39, 57], value: Shadow Magic}
+    - {roll: [58, 76], value: Storm Sorcery}
+    - {roll: [77, 95], value: Wild Magic}
+    - {roll: [96, 100], value: Choose}
+
+- roll: [81, 88]
+  value: Warlock
+  subtable:
+    - {roll: [01, 19], value: Archfey}
+    - {roll: [20, 38], value: Celestial}
+    - {roll: [39, 57], value: Fiend}
+    - {roll: [58, 76], value: Great Old One}
+    - {roll: [77, 95], value: Hexblade}
+    - {roll: [96, 100], value: Choose}
+
+- {roll: [89, 96], value: Wizard}
+- {roll: [97, 100], value: Choose}
