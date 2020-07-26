@@ -1,8 +1,11 @@
-- {roll: [01, 08], value: Barbarian}
-- {roll: [09, 16], value: Bard}
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+- {roll: [01, 08], value: Barbarian, preferred_stats: [strength, constitution]}
+- {roll: [09, 16], value: Bard, preferred_stats: [charisma, dexterity]}
 
 - roll: [17, 24]
   value: Cleric
+  preferred_stats: [wisdom, constitution, strength]
   subtable:
     - {roll: [01, 10], value: Forge}
     - {roll: [11, 20], value: Grave}
@@ -15,12 +18,13 @@
     - {roll: [81, 90], value: War}
     - {roll: [91, 100], value: Choose}
 
-- {roll: [25, 32], value: Druid}
+- {roll: [25, 32], value: Druid, preferred_stats: [wisdom, constitution]}
 
 - roll: [33, 40]
   value: Fighter
+  preferred_stats: [strength, constitution]
   subtable:
-    - {roll: [01, 16], value: Archery}
+    - {roll: [01, 16], value: Archery, preferred_stats: [dexterity, constitution]}
     - {roll: [17, 32], value: Defense}
     - {roll: [33, 48], value: Dueling}
     - {roll: [49, 64], value: Great Weapon}
@@ -28,13 +32,14 @@
     - {roll: [81, 96], value: Two-Weapon}
     - {roll: [97, 100], value: Choose}
 
-- {roll: [41, 48], value: Monk}
-- {roll: [49, 56], value: Paladin}
-- {roll: [57, 64], value: Paladin}
-- {roll: [65, 72], value: Rogue}
+- {roll: [41, 48], value: Monk, preferred_stats: [dexterity, wisdom]}
+- {roll: [49, 56], value: Paladin, preferred_stats: [strength, charisma]}
+- {roll: [57, 64], value: Ranger, preferred_stats: [dexterity, wisdom]}
+- {roll: [65, 72], value: Rogue, preferred_stats: [dexterity]}
 
 - roll: [73, 80]
   value: Sorcerer
+  preferred_stats: [charisma, constitution]
   subtable:
     - {roll: [01, 19], value: Divine Soul}
     - {roll: [20, 38], value: Draconic Blood}
@@ -45,6 +50,7 @@
 
 - roll: [81, 88]
   value: Warlock
+  preferred_stats: [intelligence, constitution]
   subtable:
     - {roll: [01, 19], value: Archfey}
     - {roll: [20, 38], value: Celestial}
@@ -53,5 +59,5 @@
     - {roll: [77, 95], value: Hexblade}
     - {roll: [96, 100], value: Choose}
 
-- {roll: [89, 96], value: Wizard}
-- {roll: [97, 100], value: Choose}
+- {roll: [89, 96], value: Wizard, preferred_stats: [intelligence, constitution]}
+- {roll: [97, 100], value: Choose, preferred_stats: []}
