@@ -1,6 +1,7 @@
 # Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
 
 table: class
+value_class: RandomClassTableValue
 items:
   - roll: [01, 08]
     value:

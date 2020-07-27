@@ -50,16 +50,27 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
 
     character.suggest_stats()
 
-    character_dict: Dict[str, Any] = {}
+    character_dict: Dict[str, Any] = asdict(character)
 
-    for k, item in character.race.items():
-        character_dict[k] = item
+    character_dict["background"].update({
+        "feature": "{{ todo: placeholder }}",
+        "family": "{{ todo: placeholder }}",
+        "memory": "{{ todo: placeholder }}",
+        "motivation": "{{ todo: placeholder }}",
+        "habits": "{{ todo: placeholder }}",
+        "quest": "{{ todo: placeholder }}",
+    })
 
-    for k, item in character.background.items():
-        character_dict[k] = item
+    character_dict.update({
+        "max_hp": "{{ todo: placeholder }}",
+        "gold": "{{ todo: placeholder }}",
+    })
 
-    for k, item in character.character_class.items():
-        character_dict[k] = item
+    character_dict["appearance"] = {
+        "age": "{{ todo: placeholder }}",
+        "height": "{{ todo: placeholder }}",
+        "weight": "{{ todo: placeholder }}",
+    }
 
     character_dict.update({
         "suggested_stats": asdict(character.suggested_stats),

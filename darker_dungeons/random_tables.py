@@ -27,6 +27,11 @@ class RandomClassTableValue(RandomTableValue):
         self.preferred_stats = preferred_stats
 
 
+TABlE_VALUE_CLASSES = {
+    "RandomTableValue": RandomTableValue,
+    "RandomClassTableValue": RandomClassTableValue,
+}
+
 T = TypeVar("T", bound=RandomTableValue)
 
 
