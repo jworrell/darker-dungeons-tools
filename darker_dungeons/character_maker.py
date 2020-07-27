@@ -9,7 +9,7 @@ from typing import Dict, Any, Tuple
 import yaml
 
 from darker_dungeons.character import CharacterStats, Character
-from darker_dungeons.random_tables import RandomTable, RandomTableValue
+from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue
 
 
 def get_base_headers(content_length: int) -> Dict[str, str]:
@@ -22,13 +22,13 @@ def get_base_headers(content_length: int) -> Dict[str, str]:
 
 def lambda_init() -> Tuple[RandomTable, RandomTable, RandomTable]:
     backgrounds = yaml.load(open("tables/background.yml"), Loader=yaml.BaseLoader)
-    background_table = RandomTable.from_dict(RandomTableValue, backgrounds, 100)
+    background_table: RandomTable[RandomTableValue] = RandomTable.from_dict(RandomTableValue, backgrounds, 100)
 
     classes = yaml.load(open("tables/class.yml"), Loader=yaml.BaseLoader)
-    class_table = RandomTable.from_dict(RandomTableValue, classes, 100)
+    class_table: RandomTable[RandomClassTableValue] = RandomTable.from_dict(RandomClassTableValue, classes, 100)
 
     races = yaml.load(open("tables/race.yml"), Loader=yaml.BaseLoader)
-    race_table = RandomTable.from_dict(RandomTableValue, races, 100)
+    race_table: RandomTable[RandomTableValue] = RandomTable.from_dict(RandomTableValue, races, 100)
 
     return background_table, class_table, race_table
 

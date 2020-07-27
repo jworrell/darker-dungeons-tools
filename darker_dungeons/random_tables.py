@@ -13,12 +13,26 @@ class RandomTableValue:
         self.name = name
 
 
+class RandomClassTableValue(RandomTableValue):
+    @staticmethod
+    def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        return RandomClassTableValue(
+            name=_dict["name"],
+            preferred_stats=_dict.get("preferred_stats", None),
+        )
+
+    def __init__(self, name, preferred_stats):
+        super().__init__(name)
+
+        self.preferred_stats = preferred_stats
+
+
 T = TypeVar("T", bound=RandomTableValue)
 
 
 class RandomTableItem(Generic[T]):
     @staticmethod
-    def from_dict(value_class, _dict: Dict[str, Any]) -> 'RandomTableItem':
+    def from_dict(value_class, _dict: Dict[str, Any]) -> 'RandomTableItem[T]':
         return RandomTableItem(
             low=int(_dict["roll"][0]),
             high=int(_dict["roll"][1]),
@@ -26,7 +40,7 @@ class RandomTableItem(Generic[T]):
             subtables=[RandomTable.from_dict(value_class, item) for item in _dict.get("subtables", [])],
         )
 
-    def __init__(self, low: int, high: int, value: T, subtables: Sequence['RandomTable']) -> None:
+    def __init__(self, low: int, high: int, value: T, subtables: Sequence['RandomTable[T]']) -> None:
         self.low = low
         self.high = high
         self.value = value
@@ -35,7 +49,7 @@ class RandomTableItem(Generic[T]):
 
 class RandomTable(Generic[T]):
     @staticmethod
-    def from_dict(value_class, _dict: Dict[str, Any], die_size: Optional[int] = None) -> 'RandomTable':
+    def from_dict(value_class, _dict: Dict[str, Any], die_size: Optional[int] = None) -> 'RandomTable[T]':
         items: List[RandomTableItem[T]] = []
 
         for item in _dict["items"]:
