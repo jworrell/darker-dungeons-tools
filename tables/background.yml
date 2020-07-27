@@ -1,16 +1,18 @@
 # Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
 
-- {roll: [01, 07], value: Acolyte}
-- {roll: [08, 14], value: Charlatan}
-- {roll: [15, 21], value: Criminal}
-- {roll: [22, 28], value: Entertainer}
-- {roll: [29, 35], value: Folk Hero}
-- {roll: [36, 42], value: Guild Artisan}
-- {roll: [43, 49], value: Hermit}
-- {roll: [50, 56], value: Noble}
-- {roll: [57, 63], value: Outlander}
-- {roll: [64, 70], value: Sage}
-- {roll: [71, 77], value: Sailor}
-- {roll: [78, 84], value: Soldier}
-- {roll: [85, 91], value: Urchin}
-- {roll: [92, 100], value: Choose}
+table: background
+items:
+  - {roll: [01, 07], value: {name: Acolyte}}
+  - {roll: [08, 14], value: {name: Charlatan}}
+  - {roll: [15, 21], value: {name: Criminal}}
+  - {roll: [22, 28], value: {name: Entertainer}}
+  - {roll: [29, 35], value: {name: Folk Hero}}
+  - {roll: [36, 42], value: {name: Guild Artisan}}
+  - {roll: [43, 49], value: {name: Hermit}}
+  - {roll: [50, 56], value: {name: Noble}}
+  - {roll: [57, 63], value: {name: Outlander}}
+  - {roll: [64, 70], value: {name: Sage}}
+  - {roll: [71, 77], value: {name: Sailor}}
+  - {roll: [78, 84], value: {name: Soldier}}
+  - {roll: [85, 91], value: {name: Urchin}}
+  - {roll: [92, 100], value: {name: Choose}}

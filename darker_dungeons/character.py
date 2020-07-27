@@ -1,6 +1,8 @@
 import random
 from dataclasses import dataclass, asdict
-from typing import Optional
+from typing import Optional, Mapping
+
+from darker_dungeons.random_tables import RandomTableValue
 
 
 @dataclass
@@ -36,9 +38,9 @@ class CharacterChoice:
 
 @dataclass
 class Character:
-    race: CharacterChoice
-    background: CharacterChoice
-    character_class: CharacterChoice
+    race: Mapping[str, RandomTableValue]
+    background: Mapping[str, RandomTableValue]
+    character_class: Mapping[str, RandomTableValue]
     reroll: int
     rolled_stats: CharacterStats
     suggested_stats: Optional[CharacterStats]

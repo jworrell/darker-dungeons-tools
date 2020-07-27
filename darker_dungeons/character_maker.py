@@ -9,7 +9,7 @@ from typing import Dict, Any, Tuple
 import yaml
 
 from darker_dungeons.character import CharacterStats, Character
-from darker_dungeons.random_tables import RandomTable
+from darker_dungeons.random_tables import RandomTable, RandomTableValue
 
 
 def get_base_headers(content_length: int) -> Dict[str, str]:
@@ -22,13 +22,13 @@ def get_base_headers(content_length: int) -> Dict[str, str]:
 
 def lambda_init() -> Tuple[RandomTable, RandomTable, RandomTable]:
     backgrounds = yaml.load(open("tables/background.yml"), Loader=yaml.BaseLoader)
-    background_table = RandomTable.from_list(backgrounds, 100)
+    background_table = RandomTable.from_dict(RandomTableValue, backgrounds, 100)
 
     classes = yaml.load(open("tables/class.yml"), Loader=yaml.BaseLoader)
-    class_table = RandomTable.from_list(classes)
+    class_table = RandomTable.from_dict(RandomTableValue, classes, 100)
 
     races = yaml.load(open("tables/race.yml"), Loader=yaml.BaseLoader)
-    race_table = RandomTable.from_list(races, 100)
+    race_table = RandomTable.from_dict(RandomTableValue, races, 100)
 
     return background_table, class_table, race_table
 
@@ -50,17 +50,32 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
 
     character.suggest_stats()
 
-    character_dict = asdict(character)
-    character_dict["attribution"] = {
-        "Random Tables": {
-            "author": "Giffyglyph",
-            "url": "https://giffyglyph.com/darkerdungeons/",
-        },
-        "Random Character API": {
-            "author": "jworrell",
-            "url": "https://github.com/jworrell/darker-dungeons-tools",
+    character_dict: Dict[str, Any] = {}
+
+    for k, item in character.race.items():
+        character_dict[k] = item
+
+    for k, item in character.background.items():
+        character_dict[k] = item
+
+    for k, item in character.character_class.items():
+        character_dict[k] = item
+
+    character_dict.update({
+        "suggested_stats": asdict(character.suggested_stats),
+        "rolled_stats": asdict(character.rolled_stats),
+        "reroll": character.reroll,
+        "attribution": {
+            "Random Tables": {
+                "author": "Giffyglyph",
+                "url": "https://giffyglyph.com/darkerdungeons/",
+            },
+            "Random Character API": {
+                "author": "jworrell",
+                "url": "https://github.com/jworrell/darker-dungeons-tools",
+            }
         }
-    }
+    })
 
     result = json.dumps(character_dict)
 

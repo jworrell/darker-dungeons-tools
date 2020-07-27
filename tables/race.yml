@@ -1,83 +1,137 @@
 # Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
 
-- roll: [1, 1]
-  value: Aasimar
-  subtable:
-    - {roll: [1, 33], value: Fallen}
-    - {roll: [34, 67], value: Protector}
-    - {roll: [68, 100], value: Scourge}
+table: race
+items:
+  - roll: [1, 1]
+    value:
+      name: Aasimar
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 33], value: {name: Fallen}}
+          - {roll: [34, 67], value: {name: Protector}}
+          - {roll: [68, 100], value: {name: Scourge}}
 
-- {roll: [2, 4], value: Dragonborn}
+  - roll: [2, 4]
+    value:
+      name: Dragonborn
 
-- roll: [5, 19]
-  value: Dwarf
-  subtable:
-    - {roll: [1, 45], value: Hill}
-    - {roll: [46, 90], value: Mountain}
-    - {roll: [91, 100], value: Duergar}
+  - roll: [5, 19]
+    value:
+      name: Dwarf
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 45], value: {name: Hill}}
+          - {roll: [46, 90], value: {name: Mountain}}
+          - {roll: [91, 100], value: {name: Duergar}}
 
-- roll: [20, 29]
-  value: Elf
-  subtable:
-    - {roll: [1, 10], value: Drow}
-    - {roll: [11, 20], value: Eladrin}
-    - {roll: [21, 50], value: High}
-    - {roll: [51, 60], value: Sea}
-    - {roll: [61, 70], value: Shadar-kai}
-    - {roll: [71, 100], value: Wood}
+  - roll: [20, 29]
+    value:
+      name: Elf
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 10], value: {name: Drow}}
+          - {roll: [11, 20], value: {name: Eladrin}}
+          - {roll: [21, 50], value: {name: High}}
+          - {roll: [51, 60], value: {name: Sea}}
+          - {roll: [61, 70], value: {name: Shadar-kai}}
+          - {roll: [71, 100], value: {name: Wood}}
 
-- {roll: [30, 31], value: Firbolg}
-- roll: [32, 33]
-  value: Gith
-  subtable:
-    - {roll: [1, 50], value: Githyanki}
-    - {roll: [51, 100], value: Githzerai}
+  - roll: [30, 31]
+    value:
+      name: Firbolg
 
-- roll: [34, 39]
-  value: Gnome
-  subtable:
-    - {roll: [1, 45], value: Forest}
-    - {roll: [46, 90], value: Rock}
-    - {roll: [91, 100], value: Deep}
+  - roll: [32, 33]
+    value:
+      name: Gith
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 50], value: {name: Githyanki}}
+          - {roll: [51, 100], value: {name: Githzerai}}
 
-- {roll: [40, 41], value: Goliath}
-- {roll: [42, 42], value: Half-Elf}
-- {roll: [43, 43], value: Half-Orc}
+  - roll: [34, 39]
+    value:
+      name: Gnome
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 45], value: {name: Forest}}
+          - {roll: [46, 90], value: {name: Rock}}
+          - {roll: [91, 100], value: {name: Deep}}
 
-- roll: [44, 50]
-  value: Halfling
-  subtable:
-    - {roll: [1, 50], value: Lightfoot}
-    - {roll: [51, 100], value: Stout}
+  - roll: [40, 41]
+    value:
+      name: Goliath
 
-- {roll: [51, 90], value: Human}
-- {roll: [91, 91], value: Kenku}
-- {roll: [92, 92], value: Lizardfold}
+  - roll: [42, 42]
+    value:
+      name: Half-Elf
 
-- roll: [93, 93]
-  value: Monstrous
-  subtable:
-    - {roll: [1, 10], value: Bugbear}
-    - {roll: [11, 35], value: Goblin}
-    - {roll: [36, 50], value: Hobgoblin}
-    - {roll: [51, 75], value: Kobold}
-    - {roll: [76, 90], value: Orc}
-    - {roll: [91, 100], value: Yuan-ti}
+  - roll: [43, 43]
+    value:
+      name: Half-Orc
 
-- {roll: [94, 94], value: Tabaxi}
+  - roll: [44, 50]
+    value:
+      name: Halfling
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 50], value: {name: Lightfoot}}
+          - {roll: [51, 100], value: {name: Stout}}
 
-- roll: [95, 98]
-  value: Tiefling
-  subtable:
-    - {roll: [01, 12], value: Asmodeus}
-    - {roll: [13, 23], value: Baalzebul}
-    - {roll: [24, 34], value: Dispater}
-    - {roll: [35, 45], value: Fierna}
-    - {roll: [46, 56], value: Glasya}
-    - {roll: [57, 67], value: Levistus}
-    - {roll: [68, 78], value: Mammon}
-    - {roll: [79, 89], value: Mephistopheles}
-    - {roll: [90, 100], value: Zariel}
+  - roll: [51, 90]
+    value:
+      name: Human
 
-- {roll: [99, 99], value: Triton}
-- {roll: [100, 100], value: Choose}
+  - roll: [91, 91]
+    value:
+      name: Kenku
+
+  - roll: [92, 92]
+    value:
+      name: Lizardfold
+
+  - roll: [93, 93]
+    value:
+      name: Monstrous
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [1, 10], value: {name: Bugbear}}
+          - {roll: [11, 35], value: {name: Goblin}}
+          - {roll: [36, 50], value: {name: Hobgoblin}}
+          - {roll: [51, 75], value: {name: Kobold}}
+          - {roll: [76, 90], value: {name: Orc}}
+          - {roll: [91, 100], value: {name: Yuan-ti}}
+
+  - roll: [94, 94]
+    value:
+      name: Tabaxi
+
+  - roll: [95, 98]
+    value:
+      name: Tiefling
+    subtables:
+      - table: subrace
+        items:
+          - {roll: [01, 12], value: {name: Asmodeus}}
+          - {roll: [13, 23], value: {name: Baalzebul}}
+          - {roll: [24, 34], value: {name: Dispater}}
+          - {roll: [35, 45], value: {name: Fierna}}
+          - {roll: [46, 56], value: {name: Glasya}}
+          - {roll: [57, 67], value: {name: Levistus}}
+          - {roll: [68, 78], value: {name: Mammon}}
+          - {roll: [79, 89], value: {name: Mephistopheles}}
+          - {roll: [90, 100], value: {name: Zariel}}
+
+  - roll: [99, 99]
+    value:
+      name: Triton
+
+  - roll: [100, 100]
+    value:
+      name: Choose
