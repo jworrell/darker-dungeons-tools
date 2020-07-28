@@ -10,7 +10,7 @@ import yaml
 
 from darker_dungeons.character import CharacterStats, CharacterSheet, roll_3d6, StatRoller, suggest_stats
 from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue, flatten_selections, T, \
-    flatten_selections_more
+    flatten_selections_more, RandomAgeTableValue, RandomDescribedTableValue
 
 
 def load_table(filename: str) -> RandomTable[T]:
@@ -18,16 +18,16 @@ def load_table(filename: str) -> RandomTable[T]:
     return RandomTable.from_dict(table)
 
 
-AGE: RandomTable[RandomTableValue] = load_table("tables/age.yml")
+AGE: RandomTable[RandomAgeTableValue] = load_table("tables/age.yml")
 BACKGROUND: RandomTable[RandomTableValue] = load_table("tables/background.yml")
 CLASS: RandomTable[RandomClassTableValue] = load_table("tables/class.yml")
 FAMILY: RandomTable[RandomTableValue] = load_table("tables/family.yml")
 FEATURE: RandomTable[RandomTableValue] = load_table("tables/feature.yml")
 HABITS: RandomTable[RandomTableValue] = load_table("tables/habits.yml")
 HEIGHT: RandomTable[RandomTableValue] = load_table("tables/height.yml")
-MEMORIES: RandomTable[RandomTableValue] = load_table("tables/memories.yml")
-MOTIVATION: RandomTable[RandomTableValue] = load_table("tables/motivation.yml")
-QUEST: RandomTable[RandomTableValue] = load_table("tables/quest.yml")
+MEMORIES: RandomTable[RandomDescribedTableValue] = load_table("tables/memories.yml")
+MOTIVATION: RandomTable[RandomDescribedTableValue] = load_table("tables/motivation.yml")
+QUEST: RandomTable[RandomDescribedTableValue] = load_table("tables/quest.yml")
 RACE: RandomTable[RandomTableValue] = load_table("tables/race.yml")
 RAISED_BY: RandomTable[RandomTableValue] = load_table("tables/raised_by.yml")
 WEIGHT: RandomTable[RandomTableValue] = load_table("tables/weight.yml")

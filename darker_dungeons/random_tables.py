@@ -13,6 +13,21 @@ class RandomTableValue:
             name=_dict["name"]
         )
 
+    def flatten(self):
+        return f"{self.name}"
+
+
+@dataclass
+class RandomAgeTableValue(RandomTableValue):
+    memories: int
+
+    @staticmethod
+    def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        return RandomAgeTableValue(
+            name=_dict["name"],
+            memories=_dict.get("preferred_stats", None),
+        )
+
 
 @dataclass
 class RandomClassTableValue(RandomTableValue):
@@ -26,15 +41,32 @@ class RandomClassTableValue(RandomTableValue):
         )
 
 
-TABlE_VALUE_CLASSES: Dict[Optional[str], Any] = {
+@dataclass
+class RandomDescribedTableValue(RandomTableValue):
+    description: str
+
+    @staticmethod
+    def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        return RandomDescribedTableValue(
+            name=_dict["name"],
+            description=_dict.get("description", None),
+        )
+
+    def flatten(self):
+        return f"{self.name}: {self.description}"
+
+
+TABLE_VALUE_CLASSES: Dict[Optional[str], Any] = {
     "RandomTableValue": RandomTableValue,
+    "RandomAgeTableValue": RandomAgeTableValue,
     "RandomClassTableValue": RandomClassTableValue,
+    "RandomDescribedTableValue": RandomDescribedTableValue,
 }
 
 T = TypeVar("T", bound=RandomTableValue)
 
 
-def flatten_selections(selections: Mapping[str, T]) -> Mapping[str, str]:
+def flatten_selections(selections: Mapping[str, T]) -> Mapping[str, Any]:
     flat_dict: Dict[str, str] = {}
 
     for key, selection in selections.items():
@@ -57,7 +89,7 @@ def flatten_selections_more(selections: Mapping[str, T]) -> str:
         raise ValueError("Can't flatten_selections_mode on long dict")
 
     for _, selection in selections.items():
-        return selection.name
+        return selection.flatten()
 
     raise ValueError("selections was empty")
 
@@ -86,7 +118,7 @@ class RandomTable(Generic[T]):
         if parent_value_class is None:
             parent_value_class = RandomTableValue
 
-        value_class = TABlE_VALUE_CLASSES.get(_dict.get("value_class"), parent_value_class)
+        value_class = TABLE_VALUE_CLASSES.get(_dict.get("value_class"), parent_value_class)
 
         if value_class is None:
             raise ValueError("Invalid value_class provided in random table")
