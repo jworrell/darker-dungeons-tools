@@ -44,7 +44,20 @@ def suggest_stats(preferred_stats: List[str], rolled_stats: CharacterStats, rero
     if worst_stat[0] < reroll:
         rolled_stats_dict[worst_stat[1]] = reroll
 
-    _ = max((v, k) for k, v in rolled_stats_dict.items())
+    if not preferred_stats:
+        return CharacterStats(**rolled_stats_dict)
+
+    dump_stats = {"strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"} - set(preferred_stats)
+    best_dump = max((rolled_stats_dict[stat], stat) for stat in dump_stats)
+
+    preferred = [(rolled_stats_dict[stat], stat) for stat in preferred_stats]
+    best_swap = max((best_dump[0] - p[0], p[1]) for p in preferred)
+
+    if best_swap[0] > 0:
+        rolled_stats_dict.update({
+            best_dump[1]: rolled_stats_dict[best_swap[1]],
+            best_swap[1]: best_dump[0],
+        })
 
     return CharacterStats(**rolled_stats_dict)
 
