@@ -1,0 +1,21 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: motivation
+items:
+  - {roll: [01, 06], value: {name: Achievement, description: "To become the best"}}
+  - {roll: [07, 12], value: {name: Acquisition, description: "To obtain possessions or wealth"}}
+  - {roll: [13, 18], value: {name: Balance, description: "To bring all things into harmony"}}
+  - {roll: [19, 24], value: {name: Beneficence, description: "To protect, heal, and mend"}}
+  - {roll: [25, 30], value: {name: Creation, description: "To build or make new"}}
+  - {roll: [31, 36], value: {name: Discovery, description: "To explore, uncover, and pioneer"}}
+  - {roll: [37, 42], value: {name: Education, description: "To inform, teach, or train"}}
+  - {roll: [43, 48], value: {name: Hedonism, description: "To enjoy all things sensuous"}}
+  - {roll: [49, 54], value: {name: Liberation, description: "To free the self and/or others"}}
+  - {roll: [55, 60], value: {name: Nobility, description: "To be virtuous, honest, and brave"}}
+  - {roll: [61, 66], value: {name: Order, description: "To organize and reduce chaos"}}
+  - {roll: [67, 73], value: {name: Play, description: "To have fun, to enjoy life"}}
+  - {roll: [74, 79], value: {name: Power, description: "To control and lead others"}}
+  - {roll: [80, 85], value: {name: Recognition, description: "To gain approval, status, or fame"}}
+  - {roll: [86, 91], value: {name: Service, description: "To follow a person or group"}}
+  - {roll: [92, 97], value: {name: Understanding, description: "To seek knowledge or wisdom"}}
+  - {roll: [98, 100], value: {name: Choose, description: "Choose a motivation"}}

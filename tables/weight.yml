@@ -1,0 +1,9 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: weight
+items:
+  - {roll: [01, 05], value: {name: Very thin}}
+  - {roll: [06, 30], value: {name: Thin}}
+  - {roll: [31, 70], value: {name: Average}}
+  - {roll: [71, 95], value: {name: Fat}}
+  - {roll: [96, 100], value: {name: Very fat}}

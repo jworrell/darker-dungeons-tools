@@ -1,0 +1,9 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: raised by
+items:
+  - {roll: [01, 40], value: {name: Natural parent(s)}}
+  - {roll: [41, 60], value: {name: Close family}}
+  - {roll: [61, 70], value: {name: Adopted parent(s)}}
+  - {roll: [71, 90], value: {name: An institution}}
+  - {roll: [91, 100], value: {name: Yourself}}

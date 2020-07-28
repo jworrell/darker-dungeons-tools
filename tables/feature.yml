@@ -1,0 +1,9 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: feature
+items:
+  - {roll: [01, 20], value: {name: Scar}}
+  - {roll: [21, 40], value: {name: Tatoo}}
+  - {roll: [41, 60], value: {name: Piercing}}
+  - {roll: [61, 80], value: {name: Birthmark}}
+  - {roll: [81, 100], value: {name: Accent}}

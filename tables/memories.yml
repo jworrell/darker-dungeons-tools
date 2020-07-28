@@ -1,0 +1,9 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: memories
+items:
+  - {roll: [01, 20], value: {name: Achievment, description: A goal you helped complete}}
+  - {roll: [21, 40], value: {name: Conflict, description: Someone opposed you}}
+  - {roll: [41, 60], value: {name: Friendship, description: A close bond forged or tested}}
+  - {roll: [61, 80], value: {name: Loss, description: Something precious was taken}}
+  - {roll: [81, 100], value: {name: Love, description: A love gained or lost}}
