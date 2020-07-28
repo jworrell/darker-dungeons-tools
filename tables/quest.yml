@@ -1,0 +1,14 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: quest
+items:
+  - {roll: [01, 10], value: {name: Acquire, description: To take possession of a particular item}}
+  - {roll: [11, 20], value: {name: Craft, description: To create an item or art piece}}
+  - {roll: [21, 30], value: {name: Deliver, description: To bring something somewhere}}
+  - {roll: [31, 40], value: {name: Destroy, description: To destroy a precious object}}
+  - {roll: [41, 50], value: {name: Discover, description: "To find a person, place, or thing"}}
+  - {roll: [51, 60], value: {name: Explore, description: To map out a location}}
+  - {roll: [61, 70], value: {name: Justice, description: To apprehend someone}}
+  - {roll: [71, 80], value: {name: Learn, description: To gain specific knowledge}}
+  - {roll: [81, 90], value: {name: Meet, description: To find someone}}
+  - {roll: [91, 100], value: {name: Vengeance, description: To take revenge on someone}}

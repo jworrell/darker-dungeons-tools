@@ -1,0 +1,9 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: age
+items:
+  - {roll: [01, 39], value: {name: Young adult, memories: 1}}
+  - {roll: [40, 74], value: {name: Early middle-age, memories: 2}}
+  - {roll: [75, 91], value: {name: Late middle-age, memories: 3}}
+  - {roll: [92, 97], value: {name: Old, memories: 4}}
+  - {roll: [98, 100], value: {name: Very old, memories: 5}}

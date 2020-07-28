@@ -1,0 +1,9 @@
+# Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
+
+table: family
+items:
+  - {roll: [01, 05], value: {name: None}}
+  - {roll: [06, 30], value: {name: Small}}
+  - {roll: [31, 70], value: {name: Average}}
+  - {roll: [71, 95], value: {name: Large}}
+  - {roll: [96, 100], value: {name: Disowned}}
