@@ -46,7 +46,8 @@ def flatten_selections(selections: Mapping[str, T]) -> Mapping[str, str]:
             if inner_key == "name":
                 continue
 
-            flat_dict[inner_key] = inner_item
+            if inner_item is not None:
+                flat_dict[inner_key] = inner_item
 
     return flat_dict
 
