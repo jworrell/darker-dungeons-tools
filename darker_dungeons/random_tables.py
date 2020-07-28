@@ -52,6 +52,16 @@ def flatten_selections(selections: Mapping[str, T]) -> Mapping[str, str]:
     return flat_dict
 
 
+def flatten_selections_more(selections: Mapping[str, T]) -> str:
+    if len(selections) > 1:
+        raise ValueError("Can't flatten_selections_mode on long dict")
+
+    for _, selection in selections.items():
+        return selection.name
+
+    raise ValueError("selections was empty")
+
+
 class RandomTableItem(Generic[T]):
     @staticmethod
     def from_dict(value_class, _dict: Dict[str, Any]) -> 'RandomTableItem[T]':
