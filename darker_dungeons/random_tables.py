@@ -26,7 +26,7 @@ class RandomClassTableValue(RandomTableValue):
         )
 
 
-TABlE_VALUE_CLASSES = {
+TABlE_VALUE_CLASSES: Dict[Optional[str], Any] = {
     "RandomTableValue": RandomTableValue,
     "RandomClassTableValue": RandomClassTableValue,
 }
@@ -58,7 +58,8 @@ class RandomTableItem(Generic[T]):
             low=int(_dict["roll"][0]),
             high=int(_dict["roll"][1]),
             value=value_class.from_dict(_dict["value"]),
-            subtables=[RandomTable.from_dict(item) for item in _dict.get("subtables", [])],
+            subtables=[RandomTable.from_dict(item, parent_value_class=value_class)
+                       for item in _dict.get("subtables", [])],
         )
 
     def __init__(self, low: int, high: int, value: T, subtables: Sequence['RandomTable[T]']) -> None:
@@ -70,9 +71,11 @@ class RandomTableItem(Generic[T]):
 
 class RandomTable(Generic[T]):
     @staticmethod
-    def from_dict(_dict: Dict[str, Any], die_size: Optional[int] = None) -> 'RandomTable[T]':
-        value_class_name = _dict.get("value_class", "RandomTableValue")
-        value_class = TABlE_VALUE_CLASSES.get(value_class_name)
+    def from_dict(_dict: Dict[str, Any], die_size: Optional[int] = None, parent_value_class=None) -> 'RandomTable[T]':
+        if parent_value_class is None:
+            parent_value_class = RandomTableValue
+
+        value_class = TABlE_VALUE_CLASSES.get(_dict.get("value_class"), parent_value_class)
 
         if value_class is None:
             raise ValueError("Invalid value_class provided in random table")

@@ -127,5 +127,4 @@ items:
   - roll: [97, 100]
     value:
       name: Choose
-      preferred_stats: []
     subtables: []
