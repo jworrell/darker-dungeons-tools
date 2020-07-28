@@ -8,8 +8,8 @@ from typing import Dict, Any, Tuple
 
 import yaml
 
-from darker_dungeons.character import CharacterStats, Character
-from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue
+from darker_dungeons.character import CharacterStats, CharacterSheet, roll_3d6, StatRoller, suggest_stats
+from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue, flatten_selections
 
 
 def get_base_headers(content_length: int) -> Dict[str, str]:
@@ -22,13 +22,13 @@ def get_base_headers(content_length: int) -> Dict[str, str]:
 
 def lambda_init() -> Tuple[RandomTable, RandomTable, RandomTable]:
     backgrounds = yaml.load(open("tables/background.yml"), Loader=yaml.BaseLoader)
-    background_table: RandomTable[RandomTableValue] = RandomTable.from_dict(RandomTableValue, backgrounds, 100)
+    background_table: RandomTable[RandomTableValue] = RandomTable.from_dict(backgrounds, 100)
 
     classes = yaml.load(open("tables/class.yml"), Loader=yaml.BaseLoader)
-    class_table: RandomTable[RandomClassTableValue] = RandomTable.from_dict(RandomClassTableValue, classes, 100)
+    class_table: RandomTable[RandomClassTableValue] = RandomTable.from_dict(classes, 100)
 
     races = yaml.load(open("tables/race.yml"), Loader=yaml.BaseLoader)
-    race_table: RandomTable[RandomTableValue] = RandomTable.from_dict(RandomTableValue, races, 100)
+    race_table: RandomTable[RandomTableValue] = RandomTable.from_dict(races, 100)
 
     return background_table, class_table, race_table
 
@@ -37,18 +37,21 @@ BACKGROUND_TABLE, CLASS_TABLE, RACE_TABLE = lambda_init()
 
 
 def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, Any]:
-    rolled_stats = CharacterStats.roll_stats()
+    character_class = flatten_selections(CLASS_TABLE.choose())
 
-    character = Character(
-        race=RACE_TABLE.choose(),
-        background=BACKGROUND_TABLE.choose(),
-        character_class=CLASS_TABLE.choose(),
-        reroll=CharacterStats.roll_stat(),
+    roller = StatRoller(roll_3d6)
+    rolled_stats = CharacterStats.roll_stats(roller)
+    reroll = roller.roll_stat()
+    suggested_stats = suggest_stats(character_class["preferred_stats"], rolled_stats, reroll)
+
+    character = CharacterSheet(
+        race=flatten_selections(RACE_TABLE.choose()),
+        background=flatten_selections(BACKGROUND_TABLE.choose()),
+        character_class=character_class,
+        reroll=reroll,
         rolled_stats=rolled_stats,
-        suggested_stats=None,
+        suggested_stats=suggested_stats,
     )
-
-    character.suggest_stats()
 
     character_dict: Dict[str, Any] = asdict(character)
 
