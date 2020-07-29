@@ -6,6 +6,8 @@ items:
   - roll: [01, 08]
     value:
       name: Barbarian
+      gold: 2d4*10
+      hp: 1d12
       preferred_stats: [strength, constitution]
     subtables: []
 
@@ -13,6 +15,8 @@ items:
   - roll: [09, 16]
     value:
       name: Bard
+      gold: 5d4*10
+      hp: 1d8
       preferred_stats: [charisma, dexterity]
     subtables: []
 
@@ -20,6 +24,8 @@ items:
   - roll: [17, 24]
     value:
       name: Cleric
+      gold: 5d4*10
+      hp: 1d8
       preferred_stats: [wisdom, constitution, strength]
     subtables:
       - table: domain
@@ -39,6 +45,8 @@ items:
   - roll: [25, 32]
     value:
       name: Druid
+      gold: 2d4*10
+      hp: 1d8
       preferred_stats: [wisdom, constitution]
     subtables: []
 
@@ -46,6 +54,8 @@ items:
   - roll: [33, 40]
     value:
       name: Fighter
+      gold: 5d4*10
+      hp: 1d10
       preferred_stats: [strength, constitution]
     subtables:
       - table: fighting_style
@@ -62,6 +72,8 @@ items:
   - roll: [41, 48]
     value:
       name: Monk
+      gold: 5d4
+      hp: 1d8
       preferred_stats: [dexterity, wisdom]
     subtables: []
 
@@ -69,6 +81,8 @@ items:
   - roll: [49, 56]
     value:
       name: Paladin
+      gold: 5d4*10
+      hp: 1d10
       preferred_stats: [strength, charisma]
     subtables: []
 
@@ -76,6 +90,8 @@ items:
   - roll: [57, 64]
     value:
       name: Ranger
+      gold: 5d4*10
+      hp: 1d10
       preferred_stats: [dexterity, wisdom]
     subtables: []
 
@@ -83,6 +99,8 @@ items:
   - roll: [65, 72]
     value:
       name: Rogue
+      gold: 4d4*10
+      hp: 1d8
       preferred_stats: [dexterity]
     subtables: []
 
@@ -90,6 +108,8 @@ items:
   - roll: [73, 80]
     value:
       name: Sorcerer
+      gold: 3d4*10
+      hp: 1d6
       preferred_stats: [charisma, constitution]
     subtables:
       - table: origin
@@ -105,6 +125,8 @@ items:
   - roll: [81, 88]
     value:
       name: Warlock
+      gold: 4d4*10
+      hp: 1d8
       preferred_stats: [intelligence, constitution]
     subtables:
       - table: patron
@@ -120,6 +142,8 @@ items:
   - roll: [89, 96]
     value:
       name: Wizard
+      gold: 4d4*10
+      hp: 1d6
       preferred_stats: [intelligence, constitution]
     subtables: []
 
