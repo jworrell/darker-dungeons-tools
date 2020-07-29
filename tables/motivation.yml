@@ -1,6 +1,7 @@
 # Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
 
 table: motivation
+value_class: RandomDescribedTableValue
 items:
   - {roll: [01, 06], value: {name: Achievement, description: "To become the best"}}
   - {roll: [07, 12], value: {name: Acquisition, description: "To obtain possessions or wealth"}}

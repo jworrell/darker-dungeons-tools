@@ -4,12 +4,33 @@ Simple API for rolling new characters
 
 import json
 from dataclasses import asdict
-from typing import Dict, Any, Tuple
+from typing import Dict, Any
 
 import yaml
 
-from darker_dungeons.character import CharacterStats, Character
-from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue
+from darker_dungeons.character import CharacterStats, CharacterSheet, roll_3d6, StatRoller, suggest_stats
+from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue, flatten_selections, T, \
+    flatten_selections_more, RandomAgeTableValue, RandomDescribedTableValue
+
+
+def load_table(filename: str) -> RandomTable[T]:
+    table = yaml.load(open(filename), Loader=yaml.BaseLoader)
+    return RandomTable.from_dict(table)
+
+
+AGE: RandomTable[RandomAgeTableValue] = load_table("tables/age.yml")
+BACKGROUND: RandomTable[RandomTableValue] = load_table("tables/background.yml")
+CLASS: RandomTable[RandomClassTableValue] = load_table("tables/class.yml")
+FAMILY: RandomTable[RandomTableValue] = load_table("tables/family.yml")
+FEATURE: RandomTable[RandomTableValue] = load_table("tables/feature.yml")
+HABITS: RandomTable[RandomTableValue] = load_table("tables/habits.yml")
+HEIGHT: RandomTable[RandomTableValue] = load_table("tables/height.yml")
+MEMORIES: RandomTable[RandomDescribedTableValue] = load_table("tables/memories.yml")
+MOTIVATION: RandomTable[RandomDescribedTableValue] = load_table("tables/motivation.yml")
+QUEST: RandomTable[RandomDescribedTableValue] = load_table("tables/quest.yml")
+RACE: RandomTable[RandomTableValue] = load_table("tables/race.yml")
+RAISED_BY: RandomTable[RandomTableValue] = load_table("tables/raised_by.yml")
+WEIGHT: RandomTable[RandomTableValue] = load_table("tables/weight.yml")
 
 
 def get_base_headers(content_length: int) -> Dict[str, str]:
@@ -20,45 +41,32 @@ def get_base_headers(content_length: int) -> Dict[str, str]:
     }
 
 
-def lambda_init() -> Tuple[RandomTable, RandomTable, RandomTable]:
-    backgrounds = yaml.load(open("tables/background.yml"), Loader=yaml.BaseLoader)
-    background_table: RandomTable[RandomTableValue] = RandomTable.from_dict(RandomTableValue, backgrounds, 100)
-
-    classes = yaml.load(open("tables/class.yml"), Loader=yaml.BaseLoader)
-    class_table: RandomTable[RandomClassTableValue] = RandomTable.from_dict(RandomClassTableValue, classes, 100)
-
-    races = yaml.load(open("tables/race.yml"), Loader=yaml.BaseLoader)
-    race_table: RandomTable[RandomTableValue] = RandomTable.from_dict(RandomTableValue, races, 100)
-
-    return background_table, class_table, race_table
-
-
-BACKGROUND_TABLE, CLASS_TABLE, RACE_TABLE = lambda_init()
-
-
 def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, Any]:
-    rolled_stats = CharacterStats.roll_stats()
+    character_class = flatten_selections(CLASS.choose())
 
-    character = Character(
-        race=RACE_TABLE.choose(),
-        background=BACKGROUND_TABLE.choose(),
-        character_class=CLASS_TABLE.choose(),
-        reroll=CharacterStats.roll_stat(),
+    roller = StatRoller(roll_3d6)
+    rolled_stats = CharacterStats.roll_stats(roller)
+    reroll = roller.roll_stat()
+    suggested_stats = suggest_stats(character_class["preferred_stats"], rolled_stats, reroll)
+
+    character = CharacterSheet(
+        race=flatten_selections(RACE.choose()),
+        background=flatten_selections(BACKGROUND.choose()),
+        character_class=character_class,
+        reroll=reroll,
         rolled_stats=rolled_stats,
-        suggested_stats=None,
+        suggested_stats=suggested_stats,
     )
-
-    character.suggest_stats()
 
     character_dict: Dict[str, Any] = asdict(character)
 
     character_dict["background"].update({
-        "feature": "{{ todo: placeholder }}",
-        "family": "{{ todo: placeholder }}",
-        "memory": "{{ todo: placeholder }}",
-        "motivation": "{{ todo: placeholder }}",
-        "habits": "{{ todo: placeholder }}",
-        "quest": "{{ todo: placeholder }}",
+        "feature": flatten_selections_more(FEATURE.choose()),
+        "family": flatten_selections_more(FAMILY.choose()),
+        "memory": flatten_selections_more(MEMORIES.choose()),
+        "motivation": flatten_selections_more(MOTIVATION.choose()),
+        "habits": flatten_selections_more(HABITS.choose()),
+        "quest": flatten_selections_more(QUEST.choose()),
     })
 
     character_dict.update({
@@ -67,9 +75,9 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
     })
 
     character_dict["appearance"] = {
-        "age": "{{ todo: placeholder }}",
-        "height": "{{ todo: placeholder }}",
-        "weight": "{{ todo: placeholder }}",
+        "age": flatten_selections_more(AGE.choose()),
+        "height": flatten_selections_more(HEIGHT.choose()),
+        "weight": flatten_selections_more(WEIGHT.choose()),
     }
 
     character_dict.update({

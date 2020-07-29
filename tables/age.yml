@@ -1,6 +1,7 @@
 # Credit for random tables: Giffyglyph (https://giffyglyph.com/darkerdungeons/)
 
 table: age
+value_class: RandomAgeTableValue
 items:
   - {roll: [01, 39], value: {name: Young adult, memories: 1}}
   - {roll: [40, 74], value: {name: Early middle-age, memories: 2}}

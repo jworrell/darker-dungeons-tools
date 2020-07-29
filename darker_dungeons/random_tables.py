@@ -1,19 +1,38 @@
 import random
+from dataclasses import dataclass, asdict
 from typing import List, Dict, Any, Optional, Mapping, Sequence, TypeVar, Generic
 
 
+@dataclass
 class RandomTableValue:
+    name: str
+
     @staticmethod
     def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
         return RandomTableValue(
             name=_dict["name"]
         )
 
-    def __init__(self, name):
-        self.name = name
+    def flatten(self):
+        return f"{self.name}"
 
 
+@dataclass
+class RandomAgeTableValue(RandomTableValue):
+    memories: int
+
+    @staticmethod
+    def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        return RandomAgeTableValue(
+            name=_dict["name"],
+            memories=_dict.get("preferred_stats", None),
+        )
+
+
+@dataclass
 class RandomClassTableValue(RandomTableValue):
+    preferred_stats: List[str]
+
     @staticmethod
     def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
         return RandomClassTableValue(
@@ -21,18 +40,58 @@ class RandomClassTableValue(RandomTableValue):
             preferred_stats=_dict.get("preferred_stats", None),
         )
 
-    def __init__(self, name, preferred_stats):
-        super().__init__(name)
 
-        self.preferred_stats = preferred_stats
+@dataclass
+class RandomDescribedTableValue(RandomTableValue):
+    description: str
+
+    @staticmethod
+    def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        return RandomDescribedTableValue(
+            name=_dict["name"],
+            description=_dict.get("description", None),
+        )
+
+    def flatten(self):
+        return f"{self.name}: {self.description}"
 
 
-TABlE_VALUE_CLASSES = {
+TABLE_VALUE_CLASSES: Dict[Optional[str], Any] = {
     "RandomTableValue": RandomTableValue,
+    "RandomAgeTableValue": RandomAgeTableValue,
     "RandomClassTableValue": RandomClassTableValue,
+    "RandomDescribedTableValue": RandomDescribedTableValue,
 }
 
 T = TypeVar("T", bound=RandomTableValue)
+
+
+def flatten_selections(selections: Mapping[str, T]) -> Mapping[str, Any]:
+    flat_dict: Dict[str, str] = {}
+
+    for key, selection in selections.items():
+        selection_dict = asdict(selection)
+
+        flat_dict[key] = selection_dict["name"]
+
+        for inner_key, inner_item in selection_dict.items():
+            if inner_key == "name":
+                continue
+
+            if inner_item is not None:
+                flat_dict[inner_key] = inner_item
+
+    return flat_dict
+
+
+def flatten_selections_more(selections: Mapping[str, T]) -> str:
+    if len(selections) > 1:
+        raise ValueError("Can't flatten_selections_mode on long dict")
+
+    for _, selection in selections.items():
+        return selection.flatten()
+
+    raise ValueError("selections was empty")
 
 
 class RandomTableItem(Generic[T]):
@@ -42,7 +101,8 @@ class RandomTableItem(Generic[T]):
             low=int(_dict["roll"][0]),
             high=int(_dict["roll"][1]),
             value=value_class.from_dict(_dict["value"]),
-            subtables=[RandomTable.from_dict(value_class, item) for item in _dict.get("subtables", [])],
+            subtables=[RandomTable.from_dict(item, parent_value_class=value_class)
+                       for item in _dict.get("subtables", [])],
         )
 
     def __init__(self, low: int, high: int, value: T, subtables: Sequence['RandomTable[T]']) -> None:
@@ -54,7 +114,15 @@ class RandomTableItem(Generic[T]):
 
 class RandomTable(Generic[T]):
     @staticmethod
-    def from_dict(value_class, _dict: Dict[str, Any], die_size: Optional[int] = None) -> 'RandomTable[T]':
+    def from_dict(_dict: Dict[str, Any], die_size: Optional[int] = None, parent_value_class=None) -> 'RandomTable[T]':
+        if parent_value_class is None:
+            parent_value_class = RandomTableValue
+
+        value_class = TABLE_VALUE_CLASSES.get(_dict.get("value_class"), parent_value_class)
+
+        if value_class is None:
+            raise ValueError("Invalid value_class provided in random table")
+
         items: List[RandomTableItem[T]] = []
 
         for item in _dict["items"]:
@@ -92,7 +160,7 @@ class RandomTable(Generic[T]):
 
         for item in self.items:
             if item.low <= roll <= item.high:
-                selected_items[self.name] = item.value.name
+                selected_items[self.name] = item.value
 
                 for subtable in item.subtables:
                     subtable._choose(selected_items)
