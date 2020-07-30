@@ -70,7 +70,7 @@ def main():
     parser = DiceParser()
 
     result = parser.parse(lexer.tokenize(data))
-    print(resuslt)
+    print(result)
 
 
 if __name__ == "__main__":

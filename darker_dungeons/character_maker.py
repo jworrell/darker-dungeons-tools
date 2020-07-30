@@ -60,9 +60,11 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
 
     character_dict: Dict[str, Any] = asdict(character)
 
+    age = AGE.choose()
+
     character_dict["background"].update({
         "family": flatten_selections_more(FAMILY.choose()),
-        "memory": flatten_selections_more(MEMORIES.choose()),
+        "memories": sorted(flatten_selections_more(memory) for memory in MEMORIES.choose_many(age["age"].memories)),
         "motivation": flatten_selections_more(MOTIVATION.choose()),
         "habits": flatten_selections_more(HABITS.choose()),
         "quest": flatten_selections_more(QUEST.choose()),
@@ -74,7 +76,7 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
     })
 
     character_dict["appearance"] = {
-        "age": flatten_selections_more(AGE.choose()),
+        "age": flatten_selections_more(age),
         "height": flatten_selections_more(HEIGHT.choose()),
         "weight": flatten_selections_more(WEIGHT.choose()),
         "feature": flatten_selections_more(FEATURE.choose()),

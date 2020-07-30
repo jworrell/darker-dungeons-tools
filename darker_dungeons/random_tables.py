@@ -23,9 +23,12 @@ class RandomAgeTableValue(RandomTableValue):
 
     @staticmethod
     def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        raw_memories = _dict.get("memories", None)
+        memories = 0 if raw_memories is None else int(raw_memories)
+
         return RandomAgeTableValue(
             name=_dict["name"],
-            memories=_dict.get("preferred_stats", None),
+            memories=memories,
         )
 
 
