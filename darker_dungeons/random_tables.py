@@ -1,6 +1,6 @@
 import random
 from dataclasses import dataclass, asdict
-from typing import List, Dict, Any, Optional, Mapping, Sequence, TypeVar, Generic
+from typing import List, Dict, Any, Optional, Mapping, Sequence, TypeVar, Generic, Set
 
 
 @dataclass
@@ -175,3 +175,26 @@ class RandomTable(Generic[T]):
         self._choose(selected_items)
 
         return selected_items
+
+    def choose_many(self, count: int) -> List[Mapping[str, T]]:
+        choices: List[Mapping[str, T]] = []
+        flat_choices: Set[str] = set()
+
+        max_iterations = 25
+
+        for _ in range(max_iterations):
+            choice = self.choose()
+            flat_choice = flatten_selections_more(choice)
+
+            if flat_choice in flat_choices:
+                continue
+            else:
+                flat_choices.add(flat_choice)
+
+            if len(choices) == count:
+                return choices
+
+            elif len(choices) > count:
+                raise ValueError("len(choices) > count, this can't happen")
+
+        return choices
