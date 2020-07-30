@@ -39,41 +39,38 @@ class DiceParser(Parser):
     def expr(self, p):
         return p.term0 + p.term1
 
-    @_("factor")
+    @_("roll")
     def term(self, p):
-        return p.factor
+        return p.roll
 
-    @_("factor MUL factor")
+    @_("roll MUL roll")
     def term(self, p):
-        return p.factor0 * p.factor1
+        return p.roll0 * p.roll1
+
+    @_("factor DICE factor")
+    def roll(self, p):
+        return sum(randint(1, p.factor1) for _ in range(p.factor0))
+
+    @_("factor")
+    def roll(self, p):
+        return p.factor
 
     @_("NUM")
     def factor(self, p):
         return p.NUM
 
-    @_("roll")
-    def factor(self, p):
-        return p.roll
-
     @_("LPAREN expr RPAREN")
     def factor(self, p):
         return p.expr
 
-    @_("NUM DICE NUM")
-    def roll(self, p):
-        return sum(randint(1, p.NUM1) for _ in range(p.NUM0))
-
 
 def main():
-    data = '(3d6)d6'
+    data = '10d6'
     lexer = DiceLexer()
-    # for tok in lexer.tokenize(data):
-    #     print('type=%r, value=%r' % (tok.type, tok.value))
-
     parser = DiceParser()
 
     result = parser.parse(lexer.tokenize(data))
-    print(result)
+    print(resuslt)
 
 
 if __name__ == "__main__":
