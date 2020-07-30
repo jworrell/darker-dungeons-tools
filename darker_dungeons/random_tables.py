@@ -194,6 +194,8 @@ class RandomTable(Generic[T]):
             else:
                 flat_choices.add(flat_choice)
 
+            choices.append(choice)
+
             if len(choices) == count:
                 return choices
 
