@@ -5,7 +5,8 @@ Simple API for rolling new characters
 import json
 import pickle
 from dataclasses import asdict
-from typing import Dict, Any
+from decimal import Decimal
+from typing import Dict, Any, Optional
 
 from darker_dungeons.character import CharacterStats, CharacterSheet, roll_3d6, StatRoller, suggest_stats
 from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue, flatten_selections, T, \
@@ -70,12 +71,31 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
         "quest": flatten_selections_more(QUEST.choose()),
     })
 
-    hp = class_dict["class"].hp
+    max_hp = class_dict["class"].hp
+    _gold: Optional[Decimal] = class_dict["class"].roll_gold()
+    gold: Decimal = Decimal(0) if _gold is None else _gold
+
+    _rolled_equipment = class_dict["class"].choose_equipment()
+    rolled_equipment = [] if _rolled_equipment is None else _rolled_equipment
+
+    carried_equipment = []
+
+    for item in rolled_equipment:
+        gold -= item["quantity"] * item["price"]
+
+        carried_equipment.append({
+            "item": item["item"],
+            "quantity": str(item["quantity"]),
+            "price": str(item["price"]),
+        })
+
+    if gold < Decimal(0):
+        gold = Decimal(0)
 
     character_dict.update({
-        "max_hp": None if hp is None else int(hp.replace("D", "d").split("d")[1]),
-        "gold": class_dict["class"].roll_gold(),
-        "equipment": class_dict["class"].choose_equipment(),
+        "max_hp": None if max_hp is None else int(max_hp.replace("D", "d").split("d")[1]),
+        "gold": str(gold),
+        "equipment": carried_equipment,
     })
 
     character_dict["appearance"] = {

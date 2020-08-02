@@ -1,12 +1,12 @@
 import random
 from dataclasses import dataclass, asdict
+from decimal import Decimal
 from typing import List, Dict, Any, Optional, Mapping, Sequence, TypeVar, Generic, Set
 
 from darker_dungeons.dice import Operation, parse_dice_expression
 
 
 def dict_factory(result):
-    print("result", result)
     return {k: v for k, v in result if not k.startswith("_")}
 
 
@@ -51,7 +51,21 @@ class Equipment:
     def from_list(li: List[Dict[str, Any]]) -> 'Equipment':
         equipment_tree = {"all": li}
 
+        Equipment._convert_to_numbers(equipment_tree)
+
         return Equipment(equipment_tree=equipment_tree)
+
+    @staticmethod
+    def _convert_to_numbers(node):
+        if "item" in node:
+            node["quantity"] = Decimal(node["quantity"])
+            node["price"] = Decimal(node["price"])
+
+        if "all" in node:
+            [Equipment._convert_to_numbers(child) for child in node["all"]]
+
+        if "one" in node:
+            [Equipment._convert_to_numbers(child) for child in node["one"]]
 
     @staticmethod
     def _choose(node: Dict[str, Any], selections: List[Dict[str, Any]]):
@@ -95,8 +109,8 @@ class RandomClassTableValue(RandomTableValue):
             _gold_operation=None if gold is None else parse_dice_expression(gold),
         )
 
-    def roll_gold(self) -> Optional[int]:
-        return None if self._gold_operation is None else self._gold_operation.eval()
+    def roll_gold(self) -> Optional[Decimal]:
+        return None if self._gold_operation is None else Decimal(self._gold_operation.eval())
 
     def choose_equipment(self) -> Optional[List[Dict[str, Any]]]:
         return None if self._equipment is None else self._equipment.choose()
