@@ -9,6 +9,13 @@ items:
       gold: 2d4*10
       hp: 1d12
       preferred_stats: [strength, constitution]
+
+      equipment:
+        - [{item: "Greataxe", quantity: 1, price: 9999}, {item: "Longsword", quantity: 1,  price: 9999}]
+        - [{item: "Handaxe", quantity: 2, price: 9999}, {item: "Spear", quantity: 1,  price: 9999}]
+        - [{item: "Javelin", quantity: 4, price: 9999}]
+        - [{item: "Explorers Pack", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -18,6 +25,14 @@ items:
       gold: 5d4*10
       hp: 1d8
       preferred_stats: [charisma, dexterity]
+
+      equipment:
+        - [{item: "Rapier", quantity: 1, price: 9999}, {item: "Longsword", quantity: 1,  price: 9999}, {item: "Spear", quantity: 1,  price: 9999}]
+        - [{item: "Diplomats Pack", quantity: 1, price: 9999}, {item: "Entertainers Pack", quantity: 1,  price: 9999}]
+        - [{item: "Lute", quantity: 1, price: 9999}, {item: "Lyre", quantity: 1, price: 9999}, {item: "Bagpipes", quantity: 1, price: 9999}]
+        - [{item: "Dagger", quantity: 1, price: 9999}]
+        - [{item: "Leather Armor", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -27,6 +42,15 @@ items:
       gold: 5d4*10
       hp: 1d8
       preferred_stats: [wisdom, constitution, strength]
+
+      equipment:
+        - [{item: "Mace", quantity: 1, price: 9999}, {item: "Warhammer", quantity: 1,  price: 9999}]
+        - [{item: "Scale Mail", quantity: 1, price: 9999}, {item: "Leather Armor", quantity: 1,  price: 9999}]
+        - [{item: "Light Crossbow (with bolts)", quantity: 1, price: 9999}, {item: "Spear", quantity: 1,  price: 9999}]
+        - [{item: "Priests Pack", quantity: 1, price: 9999}, {item: "Explorers Pack", quantity: 1, price: 9999}]
+        - [{item: "Shield", quantity: 1, price: 9999}]
+        - [{item: "Holy Symbol", quantity: 1, price: 9999}]
+
     subtables:
       - table: domain
         items:
@@ -48,6 +72,10 @@ items:
       gold: 2d4*10
       hp: 1d8
       preferred_stats: [wisdom, constitution]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -57,6 +85,10 @@ items:
       gold: 5d4*10
       hp: 1d10
       preferred_stats: [strength, constitution]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables:
       - table: fighting_style
         items:
@@ -75,6 +107,10 @@ items:
       gold: 5d4
       hp: 1d8
       preferred_stats: [dexterity, wisdom]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -84,6 +120,10 @@ items:
       gold: 5d4*10
       hp: 1d10
       preferred_stats: [strength, charisma]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -93,6 +133,10 @@ items:
       gold: 5d4*10
       hp: 1d10
       preferred_stats: [dexterity, wisdom]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -102,6 +146,10 @@ items:
       gold: 4d4*10
       hp: 1d8
       preferred_stats: [dexterity]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables: []
 
 
@@ -111,6 +159,10 @@ items:
       gold: 3d4*10
       hp: 1d6
       preferred_stats: [charisma, constitution]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables:
       - table: origin
         items:
@@ -128,6 +180,10 @@ items:
       gold: 4d4*10
       hp: 1d8
       preferred_stats: [intelligence, constitution]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables:
       - table: patron
         items:
@@ -145,6 +201,10 @@ items:
       gold: 4d4*10
       hp: 1d6
       preferred_stats: [intelligence, constitution]
+
+      equipment:
+        - [{item: "Placeholder", quantity: 1, price: 9999}]
+
     subtables: []
 
 
