@@ -109,16 +109,18 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
         "suggested_stats": asdict(character.suggested_stats),
         "rolled_stats": asdict(character.rolled_stats),
         "reroll": character.reroll,
-        "attribution": {
-            "Random Tables": {
+        "attribution": [
+            {
+                "title": "Random Tables",
                 "author": "Giffyglyph",
                 "url": "https://giffyglyph.com/darkerdungeons/",
             },
-            "Random Character API": {
+            {
+                "title": "Random Character API",
                 "author": "jworrell",
                 "url": "https://github.com/jworrell/darker-dungeons-tools",
-            }
-        }
+            },
+        ]
     })
 
     result = json.dumps(character_dict)
