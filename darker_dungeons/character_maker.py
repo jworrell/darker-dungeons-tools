@@ -3,10 +3,9 @@ Simple API for rolling new characters
 """
 
 import json
+import pickle
 from dataclasses import asdict
 from typing import Dict, Any
-
-import yaml
 
 from darker_dungeons.character import CharacterStats, CharacterSheet, roll_3d6, StatRoller, suggest_stats
 from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomClassTableValue, flatten_selections, T, \
@@ -14,23 +13,23 @@ from darker_dungeons.random_tables import RandomTable, RandomTableValue, RandomC
 
 
 def load_table(filename: str) -> RandomTable[T]:
-    table = yaml.load(open(filename), Loader=yaml.BaseLoader)
-    return RandomTable.from_dict(table)
+    with open(f"pickles/{filename}.pickle", "rb") as pickle_file:
+        return pickle.load(pickle_file)
 
 
-AGE: RandomTable[RandomAgeTableValue] = load_table("tables/age.yml")
-BACKGROUND: RandomTable[RandomTableValue] = load_table("tables/background.yml")
-CLASS: RandomTable[RandomClassTableValue] = load_table("tables/class.yml")
-FAMILY: RandomTable[RandomTableValue] = load_table("tables/family.yml")
-FEATURE: RandomTable[RandomTableValue] = load_table("tables/feature.yml")
-HABITS: RandomTable[RandomTableValue] = load_table("tables/habits.yml")
-HEIGHT: RandomTable[RandomTableValue] = load_table("tables/height.yml")
-MEMORIES: RandomTable[RandomDescribedTableValue] = load_table("tables/memories.yml")
-MOTIVATION: RandomTable[RandomDescribedTableValue] = load_table("tables/motivation.yml")
-QUEST: RandomTable[RandomDescribedTableValue] = load_table("tables/quest.yml")
-RACE: RandomTable[RandomTableValue] = load_table("tables/race.yml")
-RAISED_BY: RandomTable[RandomTableValue] = load_table("tables/raised_by.yml")
-WEIGHT: RandomTable[RandomTableValue] = load_table("tables/weight.yml")
+AGE: RandomTable[RandomAgeTableValue] = load_table("age")
+BACKGROUND: RandomTable[RandomTableValue] = load_table("background")
+CLASS: RandomTable[RandomClassTableValue] = load_table("class")
+FAMILY: RandomTable[RandomTableValue] = load_table("family")
+FEATURE: RandomTable[RandomTableValue] = load_table("feature")
+HABITS: RandomTable[RandomTableValue] = load_table("habits")
+HEIGHT: RandomTable[RandomTableValue] = load_table("height")
+MEMORIES: RandomTable[RandomDescribedTableValue] = load_table("memories")
+MOTIVATION: RandomTable[RandomDescribedTableValue] = load_table("motivation")
+QUEST: RandomTable[RandomDescribedTableValue] = load_table("quest")
+RACE: RandomTable[RandomTableValue] = load_table("race")
+RAISED_BY: RandomTable[RandomTableValue] = load_table("raised_by")
+WEIGHT: RandomTable[RandomTableValue] = load_table("weight")
 
 
 def get_base_headers(content_length: int) -> Dict[str, str]:
@@ -42,7 +41,8 @@ def get_base_headers(content_length: int) -> Dict[str, str]:
 
 
 def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, Any]:
-    character_class = flatten_selections(CLASS.choose())
+    class_dict = CLASS.choose()
+    character_class = flatten_selections(class_dict)
 
     roller = StatRoller(roll_3d6)
     rolled_stats = CharacterStats.roll_stats(roller)
@@ -70,9 +70,11 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
         "quest": flatten_selections_more(QUEST.choose()),
     })
 
+    hp = class_dict["class"].hp
+
     character_dict.update({
-        "max_hp": "{{ todo: placeholder }}",
-        "gold": "{{ todo: placeholder }}",
+        "max_hp": None if hp is None else int(hp.replace("D", "d").split("d")[1]),
+        "gold": class_dict["class"].roll_gold(),
     })
 
     character_dict["appearance"] = {

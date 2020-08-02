@@ -2,8 +2,19 @@ import random
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Any, Optional, Mapping, Sequence, TypeVar, Generic, Set
 
+from darker_dungeons.dice import Operation, parse_dice_expression
 
-@dataclass
+
+def dict_factory(result):
+    print("result", result)
+    return {k: v for k, v in result if not k.startswith("_")}
+
+
+def asdict_omit_private(thing):
+    return asdict(thing, dict_factory=dict_factory)
+
+
+@dataclass(frozen=True)
 class RandomTableValue:
     name: str
 
@@ -17,7 +28,7 @@ class RandomTableValue:
         return f"{self.name}"
 
 
-@dataclass
+@dataclass(frozen=True)
 class RandomAgeTableValue(RandomTableValue):
     memories: int
 
@@ -32,19 +43,31 @@ class RandomAgeTableValue(RandomTableValue):
         )
 
 
-@dataclass
+@dataclass(frozen=True)
 class RandomClassTableValue(RandomTableValue):
-    preferred_stats: List[str]
+    preferred_stats: Optional[List[str]]
+    gold: Optional[str]
+    hp: Optional[str]
+
+    _gold_operation: Optional[Operation]
 
     @staticmethod
     def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
+        gold = _dict.get("gold", None)
+
         return RandomClassTableValue(
             name=_dict["name"],
             preferred_stats=_dict.get("preferred_stats", None),
+            gold=gold,
+            hp=_dict.get("hp", None),
+            _gold_operation=None if gold is None else parse_dice_expression(gold),
         )
 
+    def roll_gold(self) -> Optional[int]:
+        return None if self._gold_operation is None else self._gold_operation.eval()
 
-@dataclass
+
+@dataclass(frozen=True)
 class RandomDescribedTableValue(RandomTableValue):
     description: str
 
@@ -73,7 +96,7 @@ def flatten_selections(selections: Mapping[str, T]) -> Mapping[str, Any]:
     flat_dict: Dict[str, str] = {}
 
     for key, selection in selections.items():
-        selection_dict = asdict(selection)
+        selection_dict = asdict_omit_private(selection)
 
         flat_dict[key] = selection_dict["name"]
 
