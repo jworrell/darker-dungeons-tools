@@ -44,27 +44,62 @@ class RandomAgeTableValue(RandomTableValue):
 
 
 @dataclass(frozen=True)
+class Equipment:
+    equipment_tree: Dict[str, Any]
+
+    @staticmethod
+    def from_list(li: List[Dict[str, Any]]) -> 'Equipment':
+        equipment_tree = {"all": li}
+
+        return Equipment(equipment_tree=equipment_tree)
+
+    @staticmethod
+    def _choose(node: Dict[str, Any], selections: List[Dict[str, Any]]):
+        if "item" in node:
+            selections.append(node)
+
+        if "all" in node:
+            [Equipment._choose(child, selections) for child in node["all"]]
+
+        if "one" in node:
+            Equipment._choose(random.choice(node["one"]), selections)
+
+    def choose(self) -> List[Dict[str, Any]]:
+        selections: List[Dict[str, Any]] = []
+
+        Equipment._choose(self.equipment_tree, selections)
+
+        return selections
+
+
+@dataclass(frozen=True)
 class RandomClassTableValue(RandomTableValue):
     preferred_stats: Optional[List[str]]
     gold: Optional[str]
     hp: Optional[str]
 
+    _equipment: Optional[Equipment]
     _gold_operation: Optional[Operation]
 
     @staticmethod
     def from_dict(_dict: Dict[str, Any]) -> 'RandomTableValue':
         gold = _dict.get("gold", None)
+        equipment = _dict.get("equipment", None)
 
         return RandomClassTableValue(
             name=_dict["name"],
             preferred_stats=_dict.get("preferred_stats", None),
             gold=gold,
             hp=_dict.get("hp", None),
+            _equipment=None if equipment is None else Equipment.from_list(equipment),
             _gold_operation=None if gold is None else parse_dice_expression(gold),
         )
 
     def roll_gold(self) -> Optional[int]:
         return None if self._gold_operation is None else self._gold_operation.eval()
+
+    def choose_equipment(self) -> Optional[List[Dict[str, Any]]]:
+        return None if self._equipment is None else self._equipment.choose()
 
 
 @dataclass(frozen=True)

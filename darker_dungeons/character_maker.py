@@ -75,6 +75,7 @@ def lambda_handler(event: Dict[str, Any], context: Dict[str, Any]) -> Dict[str, 
     character_dict.update({
         "max_hp": None if hp is None else int(hp.replace("D", "d").split("d")[1]),
         "gold": class_dict["class"].roll_gold(),
+        "equipment": class_dict["class"].choose_equipment(),
     })
 
     character_dict["appearance"] = {
