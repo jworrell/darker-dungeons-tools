@@ -12,13 +12,13 @@ items:
 
       equipment:
         - one:
-            - {item: "Greataxe", quantity: 1, price: 9999}
-            - {item: "Longsword", quantity: 1,  price: 9999}
+            - {item: "Greataxe", quantity: 1, price: 30}
+            - {item: "Longsword", quantity: 1,  price: 15}
         - one:
-            - {item: "Handaxe", quantity: 2, price: 9999}
-            - {item: "Spear", quantity: 1,  price: 9999}
-        - {item: "Javelin", quantity: 4, price: 9999}
-        - {item: "Explorers Pack", quantity: 1, price: 9999}
+            - {item: "Handaxe", quantity: 2, price: 5}
+            - {item: "Spear", quantity: 1,  price: 1}
+        - {item: "Javelin", quantity: 4, price: 0.5}
+        - {item: "Explorers Pack", quantity: 1, price: 10}
 
     subtables: []
 
@@ -32,18 +32,18 @@ items:
 
       equipment:
         - one:
-            - {item: "Rapier", quantity: 1, price: 9999}
-            - {item: "Longsword", quantity: 1,  price: 9999}
-            - {item: "Spear", quantity: 1,  price: 9999}
+            - {item: "Rapier", quantity: 1, price: 25}
+            - {item: "Longsword", quantity: 1,  price: 15}
+            - {item: "Spear", quantity: 1,  price: 1}
         - one:
-            - {item: "Diplomats Pack", quantity: 1, price: 9999}
-            - {item: "Entertainers Pack", quantity: 1,  price: 9999}
+            - {item: "Diplomats Pack", quantity: 1, price: 39}
+            - {item: "Entertainers Pack", quantity: 1,  price: 40}
         - one:
-            - {item: "Lute", quantity: 1, price: 9999}
-            - {item: "Lyre", quantity: 1, price: 9999}
-            - {item: "Bagpipes", quantity: 1, price: 9999}
-        - {item: "Dagger", quantity: 1, price: 9999}
-        - {item: "Leather Armor", quantity: 1, price: 9999}
+            - {item: "Lute", quantity: 1, price: 35}
+            - {item: "Lyre", quantity: 1, price: 30}
+            - {item: "Bagpipes", quantity: 1, price: 30}
+        - {item: "Dagger", quantity: 1, price: 2}
+        - {item: "Leather Armor", quantity: 1, price: 10}
 
     subtables: []
 
@@ -57,21 +57,22 @@ items:
 
       equipment:
         - one:
-            - {item: "Mace", quantity: 1, price: 9999}
-            - {item: "Warhammer", quantity: 1,  price: 9999}
+            - {item: "Mace", quantity: 1, price: 5}
+            - {item: "Warhammer", quantity: 1,  price: 15}
         - one:
-            - {item: "Scale Mail", quantity: 1, price: 9999}
-            - {item: "Leather Armor", quantity: 1,  price: 9999}
+            - {item: "Scale Mail", quantity: 1, price: 50}
+            - {item: "Leather Armor", quantity: 1,  price: 10}
+            - {item: "Chain Mail", quantity: 1,  price: 75}
         - one:
             - all:
-                - {item: "Light Crossbow", quantity: 1, price: 9999}
-                - {item: "Bolts", quantity: 1, price: 9999}
-            - {item: "Spear", quantity: 1,  price: 9999}
+                - {item: "Light Crossbow", quantity: 1, price: 25}
+                - {item: "Bolts", quantity: 1, price: 1}
+            - {item: "Spear", quantity: 1,  price: 1}
         - one:
-            - {item: "Priests Pack", quantity: 1, price: 9999}
-            - {item: "Explorers Pack", quantity: 1, price: 9999}
-        - {item: "Shield", quantity: 1, price: 9999}
-        - {item: "Holy Symbol", quantity: 1, price: 9999}
+            - {item: "Priests Pack", quantity: 1, price: 19}
+            - {item: "Explorers Pack", quantity: 1, price: 10}
+        - {item: "Shield", quantity: 1, price: 10}
+        - {item: "Holy Symbol", quantity: 1, price: 5}
 
     subtables:
       - table: domain
@@ -97,14 +98,14 @@ items:
 
       equipment:
         - one:
-            - {item: "Wooden Shield", quantity: 1, price: 9999}
-            - {item: "Handaxe", quantity: 1, price: 9999}
+            - {item: "Wooden Shield", quantity: 1, price: 10}
+            - {item: "Handaxe", quantity: 1, price: 5}
         - one:
-            - {item: "Scimitar", quantity: 1, price: 9999}
-            - {item: "Spear", quantity: 1, price: 9999}
-        - {item: "Leather Armor", quantity: 1, price: 9999}
-        - {item: "Explorers Pack", quantity: 1, price: 9999}
-        - {item: "Druidic Focus", quantity: 1, price: 9999}
+            - {item: "Scimitar", quantity: 1, price: 25}
+            - {item: "Spear", quantity: 1, price: 1}
+        - {item: "Leather Armor", quantity: 1, price: 10}
+        - {item: "Explorers Pack", quantity: 1, price: 10}
+        - {item: "Druidic Focus", quantity: 1, price: 1}
 
     subtables: []
 
@@ -118,26 +119,26 @@ items:
 
       equipment:
         - one:
-            - {item: "Chain mail", quantity: 1, price: 9999}
+            - {item: "Chain mail", quantity: 1, price: 75}
             - all:
-                - {item: "Leather armor", quantity: 1, price: 9999}
-                - {item: "Long bow", quantity: 1, price: 9999}
-                - {item: "Arrows", quantity: 1, price: 9999}
+                - {item: "Leather armor", quantity: 1, price: 10}
+                - {item: "Long bow", quantity: 1, price: 50}
+                - {item: "Arrows", quantity: 1, price: 1}
         - one:
             - all:
-                - {item: "Longsword", quantity: 1, price: 9999}
-                - {item: "Shield", quantity: 1, price: 9999}
+                - {item: "Longsword", quantity: 1, price: 15}
+                - {item: "Shield", quantity: 1, price: 10}
             - all:
-                - {item: "Longsword", quantity: 1, price: 9999}
-                - {item: "Short sword", quantity: 1, price: 9999}
+                - {item: "Longsword", quantity: 1, price: 15}
+                - {item: "Short sword", quantity: 1, price: 10}
         - one:
             - all:
-                - {item: "Light crossbow", quantity: 1, price: 9999}
-                - {item: "Bolts", quantity: 1, price: 9999}
-            - {item: "Handaxe", quantity: 2, price: 9999}
+                - {item: "Light crossbow", quantity: 1, price: 25}
+                - {item: "Bolts", quantity: 1, price: 1}
+            - {item: "Handaxe", quantity: 2, price: 5}
         - one:
-            - {item: "Dungeoneers pack", quantity: 1, price: 9999}
-            - {item: "Explorers pack", quantity: 1, price: 9999}
+            - {item: "Dungeoneers pack", quantity: 1, price: 12}
+            - {item: "Explorers pack", quantity: 1, price: 10}
 
 
     subtables:
@@ -161,12 +162,12 @@ items:
 
       equipment:
         - one:
-            - {item: "Short sword", quantity: 1, price: 9999}
-            - {item: "Quarterstaff", quantity: 1, price: 9999}
+            - {item: "Short sword", quantity: 1, price: 10}
+            - {item: "Quarterstaff", quantity: 1, price: 0.2}
         - one:
-            - {item: "Dungeoneers pack", quantity: 1, price: 9999}
-            - {item: "Explorers pack", quantity: 1, price: 9999}
-        - {item: "Darts", quantity: 10, price: 9999}
+            - {item: "Dungeoneers pack", quantity: 1, price: 12}
+            - {item: "Explorers pack", quantity: 1, price: 10}
+        - {item: "Darts", quantity: 10, price: 0.05}
 
     subtables: []
 
@@ -181,11 +182,19 @@ items:
       equipment:
         - one:
             - all:
-                - {item: "Longsword", quantity: 1, price: 9999}
-                - {item: "Shield", quantity: 1, price: 9999}
+                - {item: "Longsword", quantity: 1, price: 15}
+                - {item: "Shield", quantity: 1, price: 10}
             - all:
-                - {item: "Longsword", quantity: 1, price: 9999}
-                - {item: "Short sword", quantity: 1, price: 9999}
+                - {item: "Longsword", quantity: 1, price: 15}
+                - {item: "Short sword", quantity: 1, price: 10}
+        - one:
+            - {item: "Javelin", quantity: 5, price: 0.5}
+            - {item: "Handaxe", quantity: 1, price: 5}
+        - one:
+            - {item: "Priests pack", quantity: 1, price: 19}
+            - {item: "Explorers pack", quantity: 1, price: 10}
+        - {item: "Chain mail", quantity: 1, price: 75}
+        - {item: "Holy Symbol", quantity: 1, price: 5}
 
     subtables: []
 
@@ -198,7 +207,19 @@ items:
       preferred_stats: [dexterity, wisdom]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+          - {item: "Scale Mail", quantity: 1, price: 50}
+          - {item: "Leather Armor", quantity: 1,  price: 10}
+        - one:
+          - {item: "Short sword", quantity: 2, price: 10}
+          - all:
+            - {item: "Handaxe", quantity: 1, price: 5}
+            - {item: "Spear", quantity: 1, price: 1}
+        - one:
+          - {item: "Dungeoneers pack", quantity: 1, price: 12}
+          - {item: "Explorers pack", quantity: 1, price: 10}
+        - {item: "Long bow", quantity: 1, price: 50}
+        - {item: "Arrows", quantity: 1, price: 1}
 
     subtables: []
 
@@ -211,7 +232,21 @@ items:
       preferred_stats: [dexterity]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Rapier", quantity: 1, price: 25}
+            - {item: "Short sword", quantity: 1, price: 10}
+        - one:
+          - {item: "Short sword", quantity: 2, price: 10}
+          - all:
+            - {item: "Shortbow", quantity: 1, price: 25}
+            - {item: "Arrows", quantity: 1, price: 1}
+        - one:
+          - {item: "Dungeoneers pack", quantity: 1, price: 12}
+          - {item: "Explorers pack", quantity: 1, price: 10}
+          - {item: "Burglars pack", quantity: 1, price: 16}
+        - {item: "Leather Armor", quantity: 1,  price: 10}
+        - {item: "Dagger", quantity: 2, price: 2}
+        - {item: "Thieves' tools", quantity: 1, price: 25}
 
     subtables: []
 
@@ -224,7 +259,18 @@ items:
       preferred_stats: [charisma, constitution]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+          - all:
+            - {item: "Light crossbow", quantity: 1, price: 25}
+            - {item: "Bolts", quantity: 1, price: 1}
+          - {item: "Quarterstaff", quantity: 1, price: 0.2}
+        - one:
+          - {item: "Component Pouch", quantity: 1, price: 25}
+          - {item: "Arcane Focus", quantity: 1, price: 10}
+        - one:
+          - {item: "Dungeoneers pack", quantity: 1, price: 12}
+          - {item: "Explorers pack", quantity: 1, price: 10}
+        - {item: "Dagger", quantity: 2, price: 2}
 
     subtables:
       - table: origin
@@ -245,7 +291,20 @@ items:
       preferred_stats: [intelligence, constitution]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+          - all:
+            - {item: "Light crossbow", quantity: 1, price: 25}
+            - {item: "Bolts", quantity: 1, price: 1}
+          - {item: "Quarterstaff", quantity: 1, price: 0.2}
+        - one:
+          - {item: "Component Pouch", quantity: 1, price: 25}
+          - {item: "Arcane Focus", quantity: 1, price: 10}
+        - one:
+          - {item: "Dungeoneers pack", quantity: 1, price: 12}
+          - {item: "Scholars pack", quantity: 1, price: 40}
+        - {item: "Leather Armor", quantity: 1,  price: 10}
+        - {item: "Dagger", quantity: 2, price: 2}
+        - {item: "Spear", quantity: 1, price: 1}
 
     subtables:
       - table: patron
@@ -266,7 +325,16 @@ items:
       preferred_stats: [intelligence, constitution]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+          - {item: "Quarterstaff", quantity: 1, price: 0.2}
+          - {item: "Dagger", quantity: 1, price: 2}
+        - one:
+          - {item: "Component Pouch", quantity: 1, price: 25}
+          - {item: "Arcane Focus", quantity: 1, price: 10}
+        - one:
+          - {item: "Explorers pack", quantity: 1, price: 10}
+          - {item: "Scholars pack", quantity: 1, price: 40}
+        - {item: "Spellbook", quantity: 1, price: 50}
 
     subtables: []
 
