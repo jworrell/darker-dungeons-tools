@@ -11,10 +11,14 @@ items:
       preferred_stats: [strength, constitution]
 
       equipment:
-        - [{item: "Greataxe", quantity: 1, price: 9999}, {item: "Longsword", quantity: 1,  price: 9999}]
-        - [{item: "Handaxe", quantity: 2, price: 9999}, {item: "Spear", quantity: 1,  price: 9999}]
-        - [{item: "Javelin", quantity: 4, price: 9999}]
-        - [{item: "Explorers Pack", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Greataxe", quantity: 1, price: 9999}
+            - {item: "Longsword", quantity: 1,  price: 9999}
+        - one:
+            - {item: "Handaxe", quantity: 2, price: 9999}
+            - {item: "Spear", quantity: 1,  price: 9999}
+        - {item: "Javelin", quantity: 4, price: 9999}
+        - {item: "Explorers Pack", quantity: 1, price: 9999}
 
     subtables: []
 
@@ -27,11 +31,19 @@ items:
       preferred_stats: [charisma, dexterity]
 
       equipment:
-        - [{item: "Rapier", quantity: 1, price: 9999}, {item: "Longsword", quantity: 1,  price: 9999}, {item: "Spear", quantity: 1,  price: 9999}]
-        - [{item: "Diplomats Pack", quantity: 1, price: 9999}, {item: "Entertainers Pack", quantity: 1,  price: 9999}]
-        - [{item: "Lute", quantity: 1, price: 9999}, {item: "Lyre", quantity: 1, price: 9999}, {item: "Bagpipes", quantity: 1, price: 9999}]
-        - [{item: "Dagger", quantity: 1, price: 9999}]
-        - [{item: "Leather Armor", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Rapier", quantity: 1, price: 9999}
+            - {item: "Longsword", quantity: 1,  price: 9999}
+            - {item: "Spear", quantity: 1,  price: 9999}
+        - one:
+            - {item: "Diplomats Pack", quantity: 1, price: 9999}
+            - {item: "Entertainers Pack", quantity: 1,  price: 9999}
+        - one:
+            - {item: "Lute", quantity: 1, price: 9999}
+            - {item: "Lyre", quantity: 1, price: 9999}
+            - {item: "Bagpipes", quantity: 1, price: 9999}
+        - {item: "Dagger", quantity: 1, price: 9999}
+        - {item: "Leather Armor", quantity: 1, price: 9999}
 
     subtables: []
 
@@ -44,12 +56,22 @@ items:
       preferred_stats: [wisdom, constitution, strength]
 
       equipment:
-        - [{item: "Mace", quantity: 1, price: 9999}, {item: "Warhammer", quantity: 1,  price: 9999}]
-        - [{item: "Scale Mail", quantity: 1, price: 9999}, {item: "Leather Armor", quantity: 1,  price: 9999}]
-        - [{item: "Light Crossbow (with bolts)", quantity: 1, price: 9999}, {item: "Spear", quantity: 1,  price: 9999}]
-        - [{item: "Priests Pack", quantity: 1, price: 9999}, {item: "Explorers Pack", quantity: 1, price: 9999}]
-        - [{item: "Shield", quantity: 1, price: 9999}]
-        - [{item: "Holy Symbol", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Mace", quantity: 1, price: 9999}
+            - {item: "Warhammer", quantity: 1,  price: 9999}
+        - one:
+            - {item: "Scale Mail", quantity: 1, price: 9999}
+            - {item: "Leather Armor", quantity: 1,  price: 9999}
+        - one:
+            - all:
+                - {item: "Light Crossbow", quantity: 1, price: 9999}
+                - {item: "Bolts", quantity: 1, price: 9999}
+            - {item: "Spear", quantity: 1,  price: 9999}
+        - one:
+            - {item: "Priests Pack", quantity: 1, price: 9999}
+            - {item: "Explorers Pack", quantity: 1, price: 9999}
+        - {item: "Shield", quantity: 1, price: 9999}
+        - {item: "Holy Symbol", quantity: 1, price: 9999}
 
     subtables:
       - table: domain
@@ -74,7 +96,15 @@ items:
       preferred_stats: [wisdom, constitution]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Wooden Shield", quantity: 1, price: 9999}
+            - {item: "Handaxe", quantity: 1, price: 9999}
+        - one:
+            - {item: "Scimitar", quantity: 1, price: 9999}
+            - {item: "Spear", quantity: 1, price: 9999}
+        - {item: "Leather Armor", quantity: 1, price: 9999}
+        - {item: "Explorers Pack", quantity: 1, price: 9999}
+        - {item: "Druidic Focus", quantity: 1, price: 9999}
 
     subtables: []
 
@@ -87,7 +117,28 @@ items:
       preferred_stats: [strength, constitution]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Chain mail", quantity: 1, price: 9999}
+            - all:
+                - {item: "Leather armor", quantity: 1, price: 9999}
+                - {item: "Long bow", quantity: 1, price: 9999}
+                - {item: "Arrows", quantity: 1, price: 9999}
+        - one:
+            - all:
+                - {item: "Longsword", quantity: 1, price: 9999}
+                - {item: "Shield", quantity: 1, price: 9999}
+            - all:
+                - {item: "Longsword", quantity: 1, price: 9999}
+                - {item: "Short sword", quantity: 1, price: 9999}
+        - one:
+            - all:
+                - {item: "Light crossbow", quantity: 1, price: 9999}
+                - {item: "Bolts", quantity: 1, price: 9999}
+            - {item: "Handaxe", quantity: 2, price: 9999}
+        - one:
+            - {item: "Dungeoneers pack", quantity: 1, price: 9999}
+            - {item: "Explorers pack", quantity: 1, price: 9999}
+
 
     subtables:
       - table: fighting_style
@@ -109,7 +160,13 @@ items:
       preferred_stats: [dexterity, wisdom]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+            - {item: "Short sword", quantity: 1, price: 9999}
+            - {item: "Quarterstaff", quantity: 1, price: 9999}
+        - one:
+            - {item: "Dungeoneers pack", quantity: 1, price: 9999}
+            - {item: "Explorers pack", quantity: 1, price: 9999}
+        - {item: "Darts", quantity: 10, price: 9999}
 
     subtables: []
 
@@ -122,7 +179,13 @@ items:
       preferred_stats: [strength, charisma]
 
       equipment:
-        - [{item: "Placeholder", quantity: 1, price: 9999}]
+        - one:
+            - all:
+                - {item: "Longsword", quantity: 1, price: 9999}
+                - {item: "Shield", quantity: 1, price: 9999}
+            - all:
+                - {item: "Longsword", quantity: 1, price: 9999}
+                - {item: "Short sword", quantity: 1, price: 9999}
 
     subtables: []
 
